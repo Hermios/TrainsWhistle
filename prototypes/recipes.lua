@@ -1,12 +1,10 @@
-data:extend({
-    {
-        type = ,
-        name = ,
-        enabled = ,
-        ingredients = {
-			{"",}
-		},
-        result = ,
-        result_count = ,
-    },
+createData("recipe","exoskeleton-equipment",trainWhistleEquipment,
+{
+	enabled = false,
+	ingredients = 
+	{
+		{"copper-cable", 5},
+		{"advanced-circuit", 2},
+		{"iron-plate", 5},
+	}
 })

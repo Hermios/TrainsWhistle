@@ -1,7 +1,7 @@
 -- Equipment
-createData("movement-bonus-equipment","exoskeleton-equipment",trainWhistleEquipment,
+createdata("movement-bonus-equipment","exoskeleton-equipment",train_whistle_equipment,
 {
-	energy_consumption = "20W",
+	energy_consumption = "1J",
 	movement_bonus = 0,
 	shape =
     {
@@ -11,13 +11,10 @@ createData("movement-bonus-equipment","exoskeleton-equipment",trainWhistleEquipm
     },
 	sprite =
     {
-      filename = "__"..ModName.."__/graphics/equipment/"..trainWhistleEquipment..".png",
+      filename = "__"..modname.."__/graphics/equipment/"..train_whistle_equipment..".png",
       width = 64,
       height = 64,
       priority = "medium"
     },
-	categories={"locomotive-category"}
+	categories={"armor"}
 })
-
-createData("train-stop","train-stop",trainStopGhost)
-data.raw["train-stop"][trainStopGhost]=setEntityAsInvisible(data.raw["train-stop"][trainStopGhost])

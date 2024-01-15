@@ -3,14 +3,12 @@ createdata("movement-bonus-equipment","exoskeleton-equipment",train_whistle_equi
 {
 	energy_consumption = "1J",
 	movement_bonus = 0,
-	shape =
-    {
+	shape ={
       width = 2,
       height = 2,
       type = "full"
     },
-	sprite =
-    {
+	sprite ={
       filename = "__"..modname.."__/graphics/equipment/"..train_whistle_equipment..".png",
       width = 64,
       height = 64,

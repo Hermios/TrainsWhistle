@@ -1,4 +1,4 @@
-createData("recipe","exoskeleton-equipment",trainWhistleEquipment,
+createdata("recipe","exoskeleton-equipment",train_whistle_equipment,
 {
 	enabled = false,
 	ingredients = 

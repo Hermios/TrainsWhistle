@@ -1,7 +1,9 @@
-require "__Hermios_Framework__.control-libs"
+custom_events=custom_events or {}
+global.whistled_trains=global.whistled_trains or {}
+
 require "constants"
 
-function on_train_whistled(event)
+custom_events["whistle_train"]=function (event)
     selected_rail=game.get_player(1).selected
     if not selected_rail or not string.find(selected_rail.type,"rail") then
         return
@@ -14,7 +16,10 @@ function on_train_whistled(event)
             train.schedule=schedule
             train.go_to_station(#schedule.records)
             if train.has_path then
-                global.custom_entities[train.id]=selected_rail
+                global.whistled_trains=global.whistled_trains or {}
+                global.whistled_trains[train.id]=selected_rail.unit_number
+                local time_before_arriving=train.max_forward_speed/2*train.path.size
+                game.get_player(1).print({"",{"TIME_ARRIVING"},time_before_arriving})
                 return
             else
                 table.remove(schedule.records)
@@ -25,16 +30,15 @@ function on_train_whistled(event)
     game.get_player(1).print({"NO_TRAIN"})
 end
 
-function on_train_changed_state(event)
-    if global.custom_entities[event.train.id]==event.train.front_rail and event.train.state==defines.train_state.wait_station then
+require "__Hermios_Framework__.control-libs"
+
+table.insert(list_events.on_train_changed_state,function (event)
+    if global.whistled_trains[event.train.id] and event.train.state==defines.train_state.wait_station then
         event.train.manual_mode=true
         schedule=event.train.schedule
         table.remove(schedule.records)
         schedule.current=#schedule.records
         event.train.schedule=schedule
-        global.custom_entities[event.train.id]=nil
+        global.whistled_trains[event.train.id]=nil
     end
-end
-
-custom_events=custom_events or {}
-custom_events["whistle_train"]=on_train_whistled
+end)

@@ -30,7 +30,8 @@
 		"custom_entities",
 		"has_train_equipment",
 		"current_entities",
-		"custom_events"
+		"custom_events",
+		"list_events"
 	],
 	"Lua.workspace.ignoreDir": [
 			".vscode",

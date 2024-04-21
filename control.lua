@@ -33,12 +33,15 @@ end
 require "__Hermios_Framework__.control-libs"
 
 table.insert(list_events.on_train_changed_state,function (event)
+    global.whistled_trains=global.whistled_trains or {}
     if global.whistled_trains[event.train.id] and event.train.state==defines.train_state.wait_station then
         event.train.manual_mode=true
         schedule=event.train.schedule
         table.remove(schedule.records)
         schedule.current=#schedule.records
-        event.train.schedule=schedule
+        if schedule.current>0 then
+            event.train.schedule=schedule
+        end
         global.whistled_trains[event.train.id]=nil
     end
 end)
